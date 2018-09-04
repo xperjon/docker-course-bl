@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  web:
+    image: blinfosoft/annual-report-web    
+    ports:
+      - 8080:80
+  api:
+    image: blinfosoft/annual-report-api
+    environment: 
+      ENV: docker
+    ports:
+      - 18080:8080
+  db:
+    image: blinfosoft/annual-report-db
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: annual_report
+    volumes:
+      - db-data:/var/lib/mysql
+volumes:
+  db-data:
